@@ -7,7 +7,7 @@ async function AddTodo() {
     
     if (!inputVal.trim()) return;
 
-    await axios.post("https://todo-web-app-jhbm.onrender.com/notes", { note: inputVal }, {
+    await axios.post("http://localhost:3000/notes", { note: inputVal }, {
         headers: { token: localStorage.getItem("token") }  
     });
 
@@ -20,7 +20,7 @@ async function AddTodo() {
 }
 
 async function getTodos() {
-    const response = await axios.get("https://todo-web-app-jhbm.onrender.com/notes",{
+    const response = await axios.get("http://localhost:3000/notes",{
         headers:{
             token:localStorage.getItem("token")
         }
