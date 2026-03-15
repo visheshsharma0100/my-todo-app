@@ -1,9 +1,13 @@
+const token = localStorage.getItem("token");
+if (!token) {
+    window.location.href = "signin.html";  
+}
 async function AddTodo() {
     const inputVal = document.getElementById("input").value;
     
     if (!inputVal.trim()) return;
 
-    await axios.post("http://localhost:3000/notes", { note: inputVal }, {
+    await axios.post("https://todo-web-app-jhbm.onrender.com/notes", { note: inputVal }, {
         headers: { token: localStorage.getItem("token") }  
     });
 
@@ -16,7 +20,7 @@ async function AddTodo() {
 }
 
 async function getTodos() {
-    const response = await axios.get("http://localhost:3000/notes",{
+    const response = await axios.get("https://todo-web-app-jhbm.onrender.com/notes",{
         headers:{
             token:localStorage.getItem("token")
         }
