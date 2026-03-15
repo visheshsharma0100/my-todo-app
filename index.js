@@ -1,5 +1,7 @@
 const express=require('express');
 const jwt=require('jsonwebtoken');
+const cors = require('cors');
+app.use(cors());
 const app=express();
 
 app.use(express.json());
@@ -96,6 +98,6 @@ app.get("/",function(req,res){
     res.sendFile(__dirname + "/Frontend/index.html");
 })
 
-app.listen(3000,function(){
-    console.log("Server run at port:3000");
+app.listen(process.env.PORT || 3000, function() {
+    console.log("Server running");
 });
