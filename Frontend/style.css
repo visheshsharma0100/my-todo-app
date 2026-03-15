@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #faf8f3;
+  font-family: 'DM Sans', sans-serif;
+  color: #2c2a26;
+  background-image: radial-gradient(#e0ddd5 1px, transparent 1px);
+  background-size: 22px 22px;
+}
+
+/* ── Page header ── */
+body::before {
+  content: "my todos";
+  display: block;
+  font-family: 'Lora', serif;
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #1a1814;
+  text-align: center;
+  padding: 48px 0 0;
+}
+
+/* ── Main layout container ── */
+#mytodos {
+  display: flex;
+  justify-content: space-between;
+  padding: 6px;
+  margin-top: 13px;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  gap: 24px;
+  align-items: flex-start;
+  max-width: 860px;
+}
+
+/* ── Left panel: all todos ── */
+#Left_All_todos {
+  flex: 1;
+  background: #ffffff;
+  border: 1.5px solid #d4cfc6;
+  border-radius: 16px;
+  padding: 24px;
+  min-height: 360px;
+  font-size: 15px;
+  color: #6b6760;
+  font-family: 'DM Sans', sans-serif;
+  position: relative;
+}
+
+#Left_All_todos::before {
+  content: "all todos";
+  display: block;
+  font-family: 'Lora', serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a09b92;
+  margin-bottom: 16px;
+}
+
+/* Individual todo items — applied by JS */
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  border: 1.5px solid #e8e3da;
+  background: #fdfcf9;
+  font-size: 14px;
+  color: #2c2a26;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.todo-item:hover {
+  border-color: #b5a99a;
+  background: #f7f4ee;
+}
+
+.todo-item.done {
+  border-color: #c3ddb5;
+  background: #f4faf0;
+  color: #7a9a6a;
+  text-decoration: line-through;
+}
+
+/* ── Right panel: input area ── */
+#RightBox {
+  width: 280px;
+  flex-shrink: 0;
+  background: #ffffff;
+  border: 1.5px solid #d4cfc6;
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: sticky;
+  top: 24px;
+}
+
+#RightBox::before {
+  content: "add new";
+  display: block;
+  font-family: 'Lora', serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #a09b92;
+  margin-bottom: 4px;
+}
+
+/* ── Input field ── */
+#input {
+  width: 100%;
+  padding: 11px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: #2c2a26;
+  background: #faf8f3;
+  border: 1.5px solid #ddd8cf;
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#input::placeholder {
+  color: #b5b0a8;
+}
+
+#input:focus {
+  border-color: #8c7b6e;
+  box-shadow: 0 0 0 3px rgba(140, 123, 110, 0.12);
+}
+
+/* ── Add button ── */
+#add {
+  width: 100%;
+  padding: 12px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: #faf8f3;
+  background: #2c2a26;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+}
+
+#add:hover {
+  background: #1a1814;
+}
+
+#add:active {
+  transform: scale(0.98);
+}
+
+/* ── Responsive ── */
+@media (max-width: 600px) {
+  #mytodos {
+    flex-direction: column;
+    width: 95%;
+  }
+
+  #RightBox {
+    width: 100%;
+    position: static;
+  }
+}

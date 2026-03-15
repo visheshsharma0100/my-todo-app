@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+    <div id="container">
+        <h2>Create Account</h2>
+
+        <input id="username" type="text" placeholder="Username">
+        <input id="password" type="password" placeholder="Password">
+        <button onclick="signup()">Sign Up</button>
+
+        <p>Already have an account? <a href="signin.html">Sign in</a></p>
+
+        <p id="msg"></p>
+    </div>
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        async function signup() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            const msg = document.getElementById("msg");
+
+            if (!username.trim() || !password.trim()) {
+                msg.className = "error";
+                msg.innerText = "Please fill in all fields.";
+                return;
+            }
+
+            try {
+                const response = await axios.post("http://localhost:3000/signup", {
+                    username,
+                    password
+                });
+
+                msg.className = "success";
+                msg.innerText = "Account created! Redirecting...";
+
+                setTimeout(() => {
+                    window.location.href = "signin.html";
+                }, 1000);
+
+            } catch (err) {
+                msg.className = "error";
+                msg.innerText = err.response?.data?.message || "Signup failed.";
+            }
+        }
+    </script>
+</body>
+</html>
